@@ -23,7 +23,7 @@ export function Home() {
         style={styles.button}
         activeOpacity={0.7} //Opacidade no click
       >
-        <Text style={styles.buttonColor}> add</Text>
+        <Text style={styles.buttonColor}> add +</Text>
       </TouchableOpacity>
 
       <Text style={[styles.title, {marginTop: 50}]}>My Skills</Text>
