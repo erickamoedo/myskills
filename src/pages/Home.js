@@ -8,6 +8,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+
+// Detalhe, nao coloquei o export default* pois isso me possibilita ter varios export em uma pagina!
 export function Home() {
   return (
     <View style={styles.container}>
