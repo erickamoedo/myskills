@@ -2,19 +2,25 @@ import React, {useState} from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   TextInput,
   Platform,
+  StyleSheet,
   TouchableOpacity,
 } from 'react-native';
 
 // Detalhe, nao coloquei o export default* pois isso me possibilita ter varios export em uma pagina!
 export function Home() {
   // Aqui eu vou armazenar novas skills
-  const [newSkill, setNewSkill] = useState('Novas');
+  const [newSkill, setNewSkill] = useState('');
 
   // Aqui eu vou armazenar minhas novas skills
-  const [mySkill, setMySkill] = useState('');
+  const [mySkills, setMySkills] = useState([]);
+
+  // quando a funcao é disparada quando o usuario interage com a aplicação, usar sempre o "Handle"
+  function handleAddNewSkill() {
+    // Chapter 1 - Conceitos importantes > Imutabilidade > 13:37
+    setMySkills(oldState => [...oldState, newSkill]);
+  }
 
   // No return fica os elementos visuais
   return (
@@ -31,19 +37,21 @@ export function Home() {
       <TouchableOpacity
         style={styles.button}
         activeOpacity={0.7} //Opacidade no click
-      >
+        onPress={handleAddNewSkill}>
         <Text style={styles.buttonColor}> add +</Text>
       </TouchableOpacity>
 
       <Text
         //Aqui é um exemplo que eu consigo passar mais de um parametro de estilização
         style={[styles.title, {marginVertical: 50}]}>
-        My Skills: {newSkill}
+        My Skills
       </Text>
 
-      <TouchableOpacity style={styles.buttonSkill}>
-        <Text style={styles.textSkill}>teste</Text>
-      </TouchableOpacity>
+      {mySkills.map(skill => (
+        <TouchableOpacity style={styles.buttonSkill}>
+          <Text style={styles.textSkill}>{skill}</Text>
+        </TouchableOpacity>
+      ))}
     </View>
   );
 }
