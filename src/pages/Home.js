@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -8,9 +8,15 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-
 // Detalhe, nao coloquei o export default* pois isso me possibilita ter varios export em uma pagina!
 export function Home() {
+  // Aqui eu vou armazenar novas skills
+  const [newSkill, setNewSkill] = useState('Novas');
+
+  // Aqui eu vou armazenar minhas novas skills
+  const [mySkill, setMySkill] = useState('');
+
+  // No return fica os elementos visuais
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Home</Text>
@@ -19,6 +25,7 @@ export function Home() {
         style={styles.input}
         placeholder={'new skill'}
         placeholderTextColor={'#555'}
+        onChangeText={setNewSkill}
       />
 
       <TouchableOpacity
@@ -28,7 +35,15 @@ export function Home() {
         <Text style={styles.buttonColor}> add +</Text>
       </TouchableOpacity>
 
-      <Text style={[styles.title, {marginTop: 50}]}>My Skills</Text>
+      <Text
+        //Aqui é um exemplo que eu consigo passar mais de um parametro de estilização
+        style={[styles.title, {marginVertical: 50}]}>
+        My Skills: {newSkill}
+      </Text>
+
+      <TouchableOpacity style={styles.buttonSkill}>
+        <Text style={styles.textSkill}>teste</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -65,6 +80,19 @@ const styles = StyleSheet.create({
   buttonColor: {
     color: '#FFF',
     fontSize: 17,
+    fontWeight: 'bold',
+  },
+
+  buttonSkill: {
+    backgroundColor: '#1F1e25',
+    padding: 15,
+    borderRadius: 50,
+    alignItems: 'center',
+  },
+
+  textSkill: {
+    color: '#FFF',
+    fontSize: 22,
     fontWeight: 'bold',
   },
 });
