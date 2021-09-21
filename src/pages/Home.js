@@ -1,5 +1,12 @@
-import React, {useState} from 'react';
-import {View, Text, TextInput, Platform, StyleSheet} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  Platform,
+  StyleSheet,
+  FlatList,
+} from 'react-native';
 
 import {Botao} from '../components/button';
 import {SkillCard} from '../components/skillcard';
@@ -42,13 +49,18 @@ export function Home() {
         My Skills
       </Text>
 
-      {mySkills.map(skill => (
-        <SkillCard skill={skill} />
-      ))}
+      <FlatList
+        // ScrollView = indicado para exibir poucos elementos, pois ele renderiza todos elementos
+        // FlatList = Ela é pensada em performance, pois renderiza aos poucos
+        data={mySkills}
+        keyExtractor={item => item}
+        renderItem={({item}) => <SkillCard skill={item} />}
+      />
     </View>
   );
 }
 
+// Customização
 const styles = StyleSheet.create({
   container: {
     flex: 1,
