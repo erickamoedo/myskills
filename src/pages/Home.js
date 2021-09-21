@@ -13,11 +13,9 @@ import {SkillCard} from '../components/skillcard';
 
 // Detalhe, nao coloquei o export default* pois isso me possibilita ter varios export em uma pagina!
 export function Home() {
-  // Aqui eu vou armazenar novas skills
-  const [newSkill, setNewSkill] = useState('');
-
-  // Aqui eu vou armazenar minhas novas skills
-  const [mySkills, setMySkills] = useState([]);
+  const [newSkill, setNewSkill] = useState(''); // Aqui eu vou armazenar novas skills
+  const [mySkills, setMySkills] = useState([]); // Aqui eu vou armazenar minhas novas skills
+  const [greeting, setGreeting] = useState(''); // Aqui eu vou armazenar a saudações do app
 
   // quando a funcao é disparada quando o usuario interage com a aplicação, usar sempre o "Handle"
   function handleAddNewSkill() {
@@ -25,10 +23,25 @@ export function Home() {
     setMySkills(oldState => [...oldState, newSkill]);
   }
 
+  useEffect(() => {
+    // com o useEffect, eu tomo uma ação antes da contrução dos blocos
+    const currentHour = new Date().getHours(); // Aqui estou pegando o horario e armazenando
+    if (currentHour < 12) {
+      setGreeting('Bom Dia');
+    } else if (currentHour >= 12 && currentHour < 18) {
+      setGreeting('Boa tarde');
+    } else {
+      setGreeting('Boa Noite');
+    }
+    console.log(currentHour);
+  }, []); // aqui eu posso colocar uma dependencia, vazia = ele carrega qnd a app é construido
+
   // No return fica os elementos visuais
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Home</Text>
+      <Text style={styles.title}>Welcome Erick</Text>
+
+      <Text style={styles.greeting}>{greeting}</Text>
 
       <TextInput
         style={styles.input}
@@ -81,5 +94,8 @@ const styles = StyleSheet.create({
     padding: Platform.OS === 'ios' ? 15 : 10, // se for ios, coloca 15, caso contrario 10
     marginTop: 30,
     borderRadius: 5,
+  },
+  greeting: {
+    color: '#fff',
   },
 });
