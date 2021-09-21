@@ -31,7 +31,9 @@ export function Home() {
       />
 
       <Botao
-      // Importando o componente do botao
+        // Importando o componente do botao
+        // Passando uma propriedade
+        onPress={handleAddNewSkill}
       />
 
       <Text
@@ -41,7 +43,7 @@ export function Home() {
       </Text>
 
       {mySkills.map(skill => (
-        <SkillCard />
+        <SkillCard skill={skill} />
       ))}
     </View>
   );

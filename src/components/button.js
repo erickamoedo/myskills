@@ -1,13 +1,12 @@
 import React from 'react';
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
 
-export function Botao() {
+export function Botao({onPress}) {
   return (
     <TouchableOpacity
       style={styles.button}
       activeOpacity={0.7} //Opacidade no click
-      //onPress={handleAddNewSkill}
-    >
+      onPress={onPress}>
       <Text style={styles.buttonText}> add +</Text>
     </TouchableOpacity>
   );
