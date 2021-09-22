@@ -26,6 +26,7 @@ export function Home() {
   useEffect(() => {
     // com o useEffect, eu tomo uma ação antes da contrução dos blocos
     const currentHour = new Date().getHours(); // Aqui estou pegando o horario e armazenando
+
     if (currentHour < 12) {
       setGreeting('Bom Dia');
     } else if (currentHour >= 12 && currentHour < 18) {
