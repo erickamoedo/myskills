@@ -11,16 +11,29 @@ import {
 import {Botao} from '../components/button';
 import {SkillCard} from '../components/skillcard';
 
+// interface é sempre fora da função
+interface SkillData {
+  // aqui dentro eu posso tipar meu estado
+  id: string;
+  name: string;
+}
+
 // Detalhe, nao coloquei o export default* pois isso me possibilita ter varios export em uma pagina!
 export function Home() {
   const [newSkill, setNewSkill] = useState(''); // Aqui eu vou armazenar novas skills
-  const [mySkills, setMySkills] = useState([]); // Aqui eu vou armazenar minhas novas skills
+  const [mySkills, setMySkills] = useState<SkillData[]>([]); // Aqui eu vou armazenar minhas novas skills
   const [greeting, setGreeting] = useState(''); // Aqui eu vou armazenar a saudações do app
 
   // quando a funcao é disparada quando o usuario interage com a aplicação, usar sempre o "Handle"
   function handleAddNewSkill() {
+    // Essa parte trata-se da aula de Typescript
+    const data = {
+      id: String(new Date().getTime()),
+      name: newSkill,
+    };
+
     // Chapter 1 - Conceitos importantes > Imutabilidade > 13:37
-    setMySkills(oldState => [...oldState, newSkill]);
+    setMySkills(oldState => [...oldState, data]);
   }
 
   useEffect(() => {
@@ -52,6 +65,7 @@ export function Home() {
       />
 
       <Botao
+        title="Add" // eu tipei esse titulo, dentro do componente
         // Importando o componente do botao
         // Passando uma propriedade
         onPress={handleAddNewSkill}
@@ -67,8 +81,8 @@ export function Home() {
         // ScrollView = indicado para exibir poucos elementos, pois ele renderiza todos elementos
         // FlatList = Ela é pensada em performance, pois renderiza aos poucos
         data={mySkills}
-        keyExtractor={item => item}
-        renderItem={({item}) => <SkillCard skill={item} />}
+        keyExtractor={item => item.id}
+        renderItem={({item}) => <SkillCard skill={item.name} />}
       />
     </View>
   );
@@ -79,7 +93,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#121015',
-    paddingHorizontal: 20,
     paddingVertical: 70,
     paddingHorizontal: 30,
   },

@@ -1,13 +1,23 @@
 import React from 'react';
-import {TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {
+  TouchableOpacity,
+  TouchableOpacityProps,
+  Text,
+  StyleSheet,
+} from 'react-native';
 
-export function Botao({onPress}) {
+interface ButtonProps extends TouchableOpacityProps {
+  title: string;
+}
+
+// o ...rest pega todas propriedades do buttonProps, inclusive a onPress
+export function Botao({title, ...rest}: ButtonProps) {
   return (
     <TouchableOpacity
       style={styles.button}
       activeOpacity={0.7} //Opacidade no click
-      onPress={onPress}>
-      <Text style={styles.buttonText}> add +</Text>
+      {...rest}>
+      <Text style={styles.buttonText}> {title} </Text>
     </TouchableOpacity>
   );
 }
