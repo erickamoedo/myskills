@@ -17,8 +17,9 @@ sudo gem install cocoapods
 Step 2:<br>
 cd ios && pod install && cd ../ && react-native run-ios
 
-
 ========
 
-proximo:<br>
+Proximo:<br>
 React Native - Chapter 01 > 02 > 06 - Imutabilidade
+
+Atualizando pasta node
