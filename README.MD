@@ -1,3 +1,9 @@
+Jornada:
+========
+
+Comecei criando um projeto em react native via CLI, e vimos o poder de ter uma unica code base. Na sequencia, vimos conceitos como por exemplo estados, imutabilidades e hooks. Passamos por criação de componentes, incorporamos typescript (para poder escalar o projeto) e por fim vimos as possibilidades de debug como por exemplo, atraves da ferramente flipper.
+
+
 Instalar os modulos:<br>
 yarn install
 
@@ -17,9 +23,3 @@ sudo gem install cocoapods
 Step 2:<br>
 cd ios && pod install && cd ../ && react-native run-ios
 
-========
-
-Proximo:<br>
-React Native - Chapter 01 > 02 > 06 - Imutabilidade
-
-Atualizando pasta node
